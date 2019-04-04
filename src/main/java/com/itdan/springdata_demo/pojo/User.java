@@ -19,6 +19,11 @@ public class User implements Serializable {
     @Column(name = "u_add")
     private String add;
 
+    @JoinColumn(name = "roles_id")
+    //一对一操作@OneToOne(cascade = CascadeType.PERSIST)//级联
+    @ManyToOne(cascade = CascadeType.PERSIST)//一对多操作
+    private Roles roles;
+
     @Override
     public String toString() {
         return "User{" +
@@ -59,5 +64,13 @@ public class User implements Serializable {
 
     public void setAdd(String add) {
         this.add = add;
+    }
+
+    public Roles getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Roles roles) {
+        this.roles = roles;
     }
 }
